@@ -9,7 +9,7 @@ echo "[*]Zatwierdz ta opcje(pozniej mozna sobie ja zmienic, to tylko po to zeby 
 Pause
 Set-ExecutionPolicy RemoteSigned
 $location = Read-host -Prompt "Wpisz sciezke instalacji dla modulu Powershella"
-$location = -join($location, "\", "MySQL.zip")
+$location = -join($location, "\", "MySql.zip")
 Invoke-WebRequest  -Uri https://github.com/adbertram/MySQL/archive/master.zip -OutFile  ( New-Item -Path "$location" -Force )
 $modulesFolder =  'C:\Program Files\WindowsPowerShell\Modules'
 Expand-Archive -Path  "$location" -DestinationPath $modulesFolder
