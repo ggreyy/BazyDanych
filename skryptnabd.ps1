@@ -8,3 +8,4 @@ echo "[*] Zaleznosc zainstalowana pomyslnie! Teraz podaj nazwe uzytkownika bazy 
 $login = Read-Host -Prompt 'Podaj login'
 $haslo = Read-Host -Prompt 'Podaj haslo'
 Open-MySqlConnection -Server "localhost" -UserName $login -Password $haslo
+$data = Invoke-SqlQuery -query "SHOW DATABASES;"
