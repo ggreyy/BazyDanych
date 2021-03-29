@@ -45,7 +45,7 @@ Boston terier
 Bouvier des Ardennes
 Bouvier des Flandres
 Brabantczyk
-Braque d'Auvergne
+Braque dAuvergne
 Braque du Bourbonnais
 Braque Saint-Germain
 Briquet Griffon Vendéen
@@ -64,13 +64,13 @@ Cane corso
 Catahoula Leopard Dog
 Cavalier king charles spaniel
 Chart rosyjski
-Chien d'Artois
+Chien dArtois
 Chihuahua (rasa psów)
 Chin japoński
 Chodsky pes
 Chorkie
 Chow chow
-Cirneco dell'Etna
+Cirneco dellEtna
 Clumber Spaniel
 Cocker spaniel amerykański
 Cocker spaniel angielski

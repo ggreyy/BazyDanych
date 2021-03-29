@@ -27,8 +27,8 @@ USE wystawa_psow_rasowych;
  --Tworze strukture bazy danych
 
 
-CREATE TABLE Psy (id_psa int NOT NULL AUTO_INCREMENT, imie_psa varchar(20),wiek int, rasa varchar(20),plec varchar(1),id_wlasc int NOT NULL, ilosc_psow int,PRIMARY KEY (id_psa,id_wlasc));
-CREATE TABLE Kategorie (id_kat int NOT NULL, kat varchar(20), rasa varchar(20), wartosc_nagr int, id_psa int NOT NULL,FOREIGN KEY (id_psa) REFERENCES Psy (id_psa) ,PRIMARY KEY (id_psa));
+CREATE TABLE Psy (id_psa int NOT NULL AUTO_INCREMENT, imie_psa varchar(20),wiek int, rasa varchar(50),plec varchar(1),id_wlasc int NOT NULL, ilosc_psow int,PRIMARY KEY (id_psa,id_wlasc));
+CREATE TABLE Kategorie (id_kat int ,kat varchar(40), wartosc_nagr int);
 CREATE TABLE Nagrody (id_nagr int NOT NULL ,id_kat int NOT NULL, imie_psa varchar(20),wartosc_nagr int, rasa varchar(20),id_psa int NOT NULL, FOREIGN KEY (id_psa) REFERENCES Psy (id_psa), PRIMARY KEY (id_psa));
 CREATE TABLE Wlasciciele (id_wlasc int NOT NULL , id_psa int NOT NULL, imie varchar(20), miasto varchar(20),nazwisko varchar(20), imie_psa varchar(20),FOREIGN KEY (id_psa,id_wlasc) REFERENCES Psy(id_psa,id_wlasc),PRIMARY KEY (id_wlasc,id_psa));
 CREATE TABLE Sprzedaz (id_psa int NOT NULL , cena int, PRIMARY KEY (id_psa),FOREIGN KEY (id_psa) REFERENCES Psy (id_psa));
@@ -38,10 +38,12 @@ CREATE TABLE Logi (logstring nvarchar(200));
 
 
  --Proste indexy
+ 
+------------------------------zmien nagrody
 
 CREATE INDEX ix_P ON Psy(wiek);
-CREATE INDEX ix_K ON Kategorie(wartosc_nagr);
 CREATE INDEX ix_N ON Nagrody(id_kat);
+CREATE INDEX ix_S ON Sedzia(wartosc_nagr);
 
 
 
@@ -51,7 +53,7 @@ DELIMITER //
 
 --Tutaj uzupelniam kategorie po to zeby dzialal Trigger, do sortowania kategorii w Psy_w_Kate_1_rzad
 
-FOR i IN 1..10
+FOR i IN 1..20
 DO
   INSERT INTO Psy_w_Kate_1_rzad (id_kat)  VALUES (i);
 END FOR;
@@ -118,5 +120,11 @@ DELIMITER ;
 CREATE TRIGGER tr_insert 
 AFTER INSERT ON Kategorie
 FOR EACH ROW
-UPDATE Psy_w_Kate_1_rzad SET Psy_w_Kate_1_rzad.ilosc = Psy_w_Kate_1_rzad.ilosc+1 WHERE Psy_w_Kate_1_rzad.id_kat IN (SELECT LAST_INSERT_ID());
+UPDATE Psy_w_Kate_1_rzad SET Psy_w_Kate_1_rzad.ilosc = Psy_w_Kate_1_rzad.ilosc+1 WHERE Psy_w_Kate_1_rzad.id_kat = NEW.id_kat;
+
+
+
+
+
+
 
