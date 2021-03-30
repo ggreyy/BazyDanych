@@ -117,10 +117,10 @@ DELIMITER ;
 --Kolejny trigger uzupelniajacy ilosc psow  w kategorii
 
 
-CREATE TRIGGER tr_insert 
-AFTER INSERT ON Kategorie
-FOR EACH ROW
-UPDATE Psy_w_Kate_1_rzad SET Psy_w_Kate_1_rzad.ilosc = Psy_w_Kate_1_rzad.ilosc+1 WHERE Psy_w_Kate_1_rzad.id_kat = NEW.id_kat;
+ --  CREATE TRIGGER tr_insert 
+ --  BEFORE INSERT ON Kategorie
+--   FOR EACH ROW
+  -- UPDATE Psy_w_Kate_1_rzad SET Psy_w_Kate_1_rzad.ilosc = Psy_w_Kate_1_rzad.ilosc+1 WHERE Psy_w_Kate_1_rzad.id_kat = NEW.id_kat;
 
 
 

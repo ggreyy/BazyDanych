@@ -65,14 +65,12 @@ while($val -ne 99){
 while($valz -ne 21)
 {
 
-echo $valz;
 $kategoria_n =  (Get-Content -Path C:\users\gdzie\source\repos\BazyDanych\kategorie.txt -TotalCount $valz)[-1];
 $rand = Get-Random -Minimum 1 -Maximum 199;
 $nagr = (Get-Content -Path C:\users\gdzie\source\repos\BazyDanych\punkty.txt -TotalCount $rand)[-1];
 
 
 
-echo $kategoria_n;
 mysql -u $login -p"$haslo" -e "USE wystawa_psow_rasowych; INSERT INTO Kategorie(kat,wartosc_nagr,id_kat) VALUES ('$kategoria_n','$nagr','$valz');";
 $valz++;
 }
